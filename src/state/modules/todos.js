@@ -3,6 +3,7 @@ import { createReducer } from '../helper';
 //constant
 export const workspace = 'todos';
 export const ADD_TEST = `${workspace}/ADD_TEST`;
+export const ADD_SAGA = `${workspace}/ADD_SAGA`;
 //default state
 const defaultState = {
   listTodo: []
@@ -21,5 +22,12 @@ export const addTodo = todo => ({
     todo
   }
 });
+
+export const addTodoSaga = todo => ({
+  type: ADD_SAGA,
+  payload: {
+    todo
+  }
+})
 
 export default todoReducer;

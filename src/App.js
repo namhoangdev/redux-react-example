@@ -1,13 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { addTodo } from './state/modules/todos'
+import {
+  addTodo as addAction,
+  addTodoSaga as addSagaAction
+} from './state/modules/todos'
 
 import logo from './logo.svg';
 import './App.css';
 
-function App({todos, addTodo}) {
-  console.log(todos);
+function App({ todos, addTodo, addTodoSaga }) {
+  console.log(todos, addTodo, addTodoSaga);
   return (
     <div className="App">
       <header className="App-header">
@@ -31,6 +34,7 @@ const mapStateToProps = state => ({
   todos: state.todos
 });
 const mapDispatchToProps = dispatch => ({
-  addTodo: todo => dispatch(addTodo(todo))
+  addTodo: todo => dispatch(addAction(todo)),
+  addTodoSaga: todo => dispatch(addSagaAction(todo))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,5 +1,11 @@
-import { compose, createStore } from 'redux';
+import { compose, createStore, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import { sagas } from './state/rootSagas';
+
 import reducers from './state/index';
+
+const sagasMiddleware = createSagaMiddleware();
+const composeMiddlewares = applyMiddleware(sagasMiddleware);
 
 // Use Redux DevTools Extension if available and not in production.
 const composeEnhancers =
@@ -9,7 +15,7 @@ const composeEnhancers =
 
 const store = createStore(
   reducers,
-  composeEnhancers()
+  composeEnhancers(composeMiddlewares)
 );
-
+sagasMiddleware.run(sagas);
 export default store;
